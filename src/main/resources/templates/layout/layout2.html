@@ -1,0 +1,24 @@
+<!--/* 자바웹개발워크북 5.2 Thymeleaf - 레이아웃 p428
+
+xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
+*/-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Title</title>
+	</head>	
+	<body>
+	layout2.html
+		<div>
+			<h3>Header</h3>
+		</div>
+		<div layout:fragment="content">
+			<p>content</p>
+		</div>
+		<div>
+			<h3>Footer</h3>
+		</div>
+		<th:block layout:fragment="script"></th:block>
+	</body>
+</html>

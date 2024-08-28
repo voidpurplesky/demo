@@ -1,0 +1,33 @@
+<!--/* 자바웹개발워크북 5.2 Thymeleaf - 기초문법 - 반복문과 제어문 처리 
+
+반복문
+- 반복이 필요한 태그에 'th:each'를 적용 - 기존 html을 그대로 둔 상태에서 반복처리를 할수있다는 장점. jstl과 조금 이질적 형태
+- <th:block>이라는 별도의 태그를 이용 - 추가로 태그가 들어가는 단점
+*/-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Title</title>
+	</head>	
+	<body>
+		
+		<div th:text="${list}"></div>
+		<div th:text="${map}"></div>
+		<div th:text="${dto}"></div>
+	<!-- 
+	[Data1, Data2, Data3, Data4, Data5, Data6, Data7, Data8, Data9]
+{A=AAAA, B=BBBB}
+com.example.demo.SampleController$SampleDTO@3d6c356e
+	 -->
+	 
+	 <script th:inline="javascript">
+	 	const list = [[${list}]];
+	 	const map = [[${map}]];
+	 	const dto = [[${dto}]];
+	 	console.log(list);
+	 	console.log(map);
+	 	console.log(dto);
+	 </script>
+	</body>
+</html>

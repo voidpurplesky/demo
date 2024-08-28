@@ -1,0 +1,15 @@
+<!--/* 자바웹개발워크북 5.2 Thymeleaf - 기초문법*/-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Title</title>
+	</head>	
+	<body>
+		<h1 th:text="${msg}"></h1>
+		<!--/* p420 th:with를 이용한 변수선언 */-->
+		<div th:with="num1 = ${10}, num2 = ${20}">
+			<h4 th:text="${num1 + num2}"></h4>
+		</div>
+	</body>
+</html>

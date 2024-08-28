@@ -1,0 +1,75 @@
+<!--/* 자바웹개발워크북 5.2 Thymeleaf - 기초문법 - 반복문과 제어문 처리 
+
+반복문
+- 반복이 필요한 태그에 'th:each'를 적용 - 기존 html을 그대로 둔 상태에서 반복처리를 할수있다는 장점. jstl과 조금 이질적 형태
+- <th:block>이라는 별도의 태그를 이용 - 추가로 태그가 들어가는 단점
+*/-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Title</title>
+	</head>	
+	<body>
+		<h4>[[${list}]]</h4>
+		<hr/>
+		<h4 th:text="${list}"></h4>
+		
+		<ul>
+			<li th:each="str: ${list}" th:text="${str}"></li>
+		</ul>
+		
+		<ul>
+			<th:block th:each="str: ${list}">
+				<li>[[${str}]]</li>
+			</th:block>
+		</ul>
+		
+		<ul>
+			<li th:each="str,status: ${list}">
+				[[${status.index}]] [[${str}]]
+			</li>
+		</ul>
+		
+		<!-- 제어문 p422 th:if/th:unless/th:switch-->
+		<ul>
+			<li th:each="str,status: ${list}">
+				<span th:if="${status.odd}">odd [[${status.index}]] [[${str}]]</span>
+				<span th:unless="${status.odd}">even [[${status.index}]] [[${str}]]</span>
+			</li>
+		</ul>
+		
+		<!-- 삼항연산자 ? : -->
+		<ul>
+			<li th:each="str,status: ${list}">
+				<span th:text="${status.odd} ? 'odd ' + ${str} : 'even ' + ${str}"></span>
+				
+			</li>
+		</ul>
+		
+		<!-- th:switch th:case -->
+		<ul>
+			<li th:each="str,status: ${list}">
+				<th:block th:switch="${status.index % 3}">
+					<span th:case="0">0</span>
+					<span th:case="1">1</span>
+					<span th:case="2">2</span>
+				</th:block>
+			</li>
+		</ul>
+		
+		<!-- 링크 처리 -->
+		<a th:href="@{/hello}">hello</a>
+		
+		
+		<!-- 링크 쿼리 스트링 처리 -->
+		<a th:href="@{/hello(name='AAA', age=10)}">hello</a>
+		<!-- 
+		<a href="hello?name=AAA&age=10">hello</a>
+		 -->
+		
+		<!-- 배열 - 자동으로 같은 이름의 파라미터를 처리 -->
+		<a th:href="@{/hello(type=${ {'AA','BB','CC'} }, age=10)}">hello</a>
+		<!-- type=AA&type=BB&type=CC&age=10 -->
+	</body>
+</html>
